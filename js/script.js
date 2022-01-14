@@ -11,13 +11,20 @@ function bgAnimationItems(){
 }
 bgAnimationItems();
 
+// toggle body scrolling
+function toggleBodyScrolling(){
+    document.body.classList.toggle("hide-scrolling");
+}
+
 // filter portfolio items 
  const filterBtnsContainer = document.querySelector(".portfolio-filter");
+ let portfolioItems;
  filterBtnsContainer.addEventListener("click", (e) => {
          if (e.target.classList.contains("portfolio-filter-btn") &&
              !e.target.classList.contains("active")) {
             filterBtnsContainer.querySelector(".active").classList.remove("active");
              e.target.classList.add("active");
+             toggleBodyScrolling();
              document.querySelector(".filter-status").classList.add("active");
              document.querySelector(".filter-status p").innerHTML =`filtering <span>${e.target.innerHTML}</span> works`;
              setTimeout(()=>{
@@ -25,6 +32,7 @@ bgAnimationItems();
              },400);
              setTimeout(()=>{
                 document.querySelector(".filter-status").classList.remove("active");
+                toggleBodyScrolling();
              },800);
          }
      });
@@ -38,9 +46,19 @@ function filterItems(filterBtn){
       }
          else{
              item.classList.remove("show");
-             
          }
      });
+     portfolioItems = document.querySelector(".portfolio-item.show");
  }
 // filter active category portfolio items
 filterItems(document.querySelector(".portfolio-filter-btn.active"));
+
+// Portfolio item details popup
+let portfolioItemIndex;
+document.addEventListener("click",(e) =>{
+    if(e.target.closest(".portfolio-item")){
+        const currentItem = e.target.closest(".portfolio-item");
+        portfolioItemIndex = Array.from(portfolioItems).indexOf(currentItem);
+        console.log(portfolioItemIndex);
+    }
+});
