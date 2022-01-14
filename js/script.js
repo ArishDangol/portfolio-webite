@@ -27,10 +27,10 @@ function toggleBodyScrolling(){
              toggleBodyScrolling();
              document.querySelector(".filter-status").classList.add("active");
              document.querySelector(".filter-status p").innerHTML =`filtering <span>${e.target.innerHTML}</span> works`;
-             setTimeout(()=>{
+             setTimeout(() => {
                 filterItems(e.target);
              },400);
-             setTimeout(()=>{
+             setTimeout(() => {
                 document.querySelector(".filter-status").classList.remove("active");
                 toggleBodyScrolling();
              },800);
@@ -48,17 +48,24 @@ function filterItems(filterBtn){
              item.classList.remove("show");
          }
      });
-     portfolioItems = document.querySelector(".portfolio-item.show");
+     portfolioItems = document.querySelectorAll(".portfolio-item.show");
  }
 // filter active category portfolio items
 filterItems(document.querySelector(".portfolio-filter-btn.active"));
 
 // Portfolio item details popup
 let portfolioItemIndex;
-document.addEventListener("click",(e) =>{
+document.addEventListener("click", (e) =>{
     if(e.target.closest(".portfolio-item")){
-        const currentItem = e.target.closest(".portfolio-item");
-        portfolioItemIndex = Array.from(portfolioItems).indexOf(currentItem);
-        console.log(portfolioItemIndex);
+         const currentItem = e.target.closest(".portfolio-item");
+         portfolioItemIndex = Array.from(portfolioItems).indexOf(currentItem);
+         togglePopup();
+         portfolioItemDetails();
     }
 });
+
+function togglePopup(){
+    document.querySelector(".portfolio-popup").classList.toggle("open");
+    toggleBodyScrolling();
+}
+document.querySelector(".pp-close-btn").addEventListener("click", togglePopup);
