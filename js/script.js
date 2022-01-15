@@ -92,7 +92,7 @@ function updateNextPrevItem(){
         portfolioItems[portfolioItemIndex-1].querySelector("h3").innerHTML;
 
         document.querySelector(".pp-footer-left img").src =
-        portfolioItems[portfolioItemIndex-1].querySelector("h3").src;
+        portfolioItems[portfolioItemIndex-1].querySelector("img").src;
     }
     else{
         document.querySelector(".pp-footer-left").classList.add("hidden");
@@ -104,7 +104,7 @@ function updateNextPrevItem(){
         portfolioItems[portfolioItemIndex+1].querySelector("h3").innerHTML;
 
         document.querySelector(".pp-footer-right img").src =
-        portfolioItems[portfolioItemIndex+1].querySelector("h3").src;
+        portfolioItems[portfolioItemIndex+1].querySelector("img").src;
     }
     else{
         document.querySelector(".pp-footer-right").classList.add("hidden");
@@ -119,5 +119,20 @@ document.querySelector(".pp-next-btn").addEventListener("click", () =>{
 });
 
 function changePortfolioItem(direction){
-    console.log(direction);
+    if(direction =="prev"){
+        portfolioItemIndex--;
+    }
+    else{
+        portfolioItemIndex++;
+    }
+    document.querySelector(".pp-overlay").classList.add(direction);
+    setTimeout(() =>{
+        document.querySelector(".pp-inner").scrollTo(0,0);
+        portfolioItemDetails();
+        updateNextPrevItem();
+    },400);
+    setTimeout(() =>{
+        document.querySelector(".pp-overlay").classList.remove(direction);
+
+    },1000);
 };
