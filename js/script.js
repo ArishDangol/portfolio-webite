@@ -133,6 +133,14 @@ function changePortfolioItem(direction){
     },400);
     setTimeout(() =>{
         document.querySelector(".pp-overlay").classList.remove(direction);
-
     },1000);
-};
+}
+
+// toggle contact form
+document.addEventListener("click", (e) =>{
+    if(e.target.classList.contains("toggle-contact-form-btn")){
+        document.querySelector(".contact-form").classList.toggle("open");
+        toggleBodyScrolling();
+    }
+});
+
