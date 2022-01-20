@@ -11,6 +11,32 @@ function bgAnimationItems(){
 }
 bgAnimationItems();
 
+// toggle navbar
+const navToggler = document.querySelector(".nav-toggler");
+navToggler.addEventListener("click", toggleNavbar);
+
+function toggleNavbar(){
+    navToggler.classList.toggle("active");
+     document.querySelector(".nav").classList.toggle("open");
+    toggleOverlayEffect();
+    toggleBodyScrolling();
+}
+
+// hide & show section
+document.addEventListener("click", (e) =>{
+    if(e.target.classList.contains("link-item") && e.target.hash !== ""){
+        console.log(e.target.hash);
+    }
+});
+
+
+
+
+// toggle overlay effect
+function toggleOverlayEffect(){
+    document.querySelector(".overlay-effect").classList.toggle("active");
+}
+
 // toggle body scrolling
 function toggleBodyScrolling(){
     document.body.classList.toggle("hide-scrolling");
